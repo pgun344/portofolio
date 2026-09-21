@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Philips Gunawan — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #ECEFEC;
+    --bg-alt: #FFFFFF;
+    --ink: #16232C;
+    --ink-soft: #4B5A61;
+    --line: #D6DAD2;
+    --teal: #2E6F6E;
+    --teal-deep: #1D4B4A;
+    --amber: #C08A2E;
+    --card: #F6F7F3;
+    --shadow: rgba(20,30,30,0.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #12181A;
+      --bg-alt: #182022;
+      --ink: #EAEFE9;
+      --ink-soft: #A9B6B2;
+      --line: #2B3536;
+      --teal: #5FADAA;
+      --teal-deep: #7FC6C2;
+      --amber: #E0AE5C;
+      --card: #182022;
+      --shadow: rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #12181A;
+    --bg-alt: #182022;
+    --ink: #EAEFE9;
+    --ink-soft: #A9B6B2;
+    --line: #2B3536;
+    --teal: #5FADAA;
+    --teal-deep: #7FC6C2;
+    --amber: #E0AE5C;
+    --card: #182022;
+    --shadow: rgba(0,0,0,0.35);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  a{ color: var(--teal-deep); }
+
+  header.top{
+    padding: 22px 0 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-bottom: 18px;
+  }
+  .mark{
+    font-family:'Fraunces', serif;
+    font-weight:600; font-size: 19px;
+    letter-spacing: -0.01em;
+  }
+  nav.links{ display:flex; gap: 22px; }
+  nav.links a{
+    text-decoration:none; color: var(--ink-soft); font-size: 14px; font-weight: 500;
+  }
+  nav.links a:hover{ color: var(--teal-deep); }
+
+  .hero{
+    padding: 64px 0 52px;
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    align-items:end;
+  }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1.12;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.05s forwards;
+  }
+  .hero p.lede{
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 0 24px;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.18s forwards;
+  }
+  .hero .cta{ display:flex; gap: 12px; flex-wrap: wrap; opacity: 0; animation: rise 0.7s ease-out 0.3s forwards;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 11px 18px;
+    border-radius: 3px;
+    text-decoration:none;
+    font-size: 14px; font-weight: 600;
+    border: 1px solid transparent;
+  }
+  .btn.primary{ background: var(--teal-deep); color: #fff; }
+  .btn.primary:hover{ background: var(--teal); }
+  .btn.ghost{ border-color: var(--line); color: var(--ink); }
+  .btn.ghost:hover{ border-color: var(--teal-deep); color: var(--teal-deep); }
+
+  @keyframes rise{
+    from{ opacity:0; transform: translateY(10px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero h1, .hero p.lede, .hero .cta{ animation: none; opacity: 1; }
+  }
+
+  .stats{
+    display:flex; flex-direction:column; gap: 14px;
+    border-left: 1px solid var(--line);
+    padding-left: 24px;
+  }
+  .stat b{
+    font-family:'Fraunces', serif; font-size: 26px; font-weight:500; display:block;
+    color: var(--teal-deep);
+  }
+  .stat span{ font-size: 13px; color: var(--ink-soft); }
+
+  @media (max-width: 680px){
+    .hero{ grid-template-columns: 1fr; }
+    .stats{ border-left:none; border-top:1px solid var(--line); padding-left:0; padding-top:20px; flex-direction:row; flex-wrap:wrap; }
+  }
+
+  section{ padding: 52px 0; border-top: 1px solid var(--line); }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-bottom: 30px; gap: 16px; flex-wrap: wrap;
+  }
+  .section-head h2{
+    font-family:'Fraunces', serif; font-weight:500; font-size:26px; margin:0;
+  }
+  .section-head .note{ font-size: 13px; color: var(--ink-soft); }
+
+  p.about{ max-width: 62ch; font-size: 16px; color: var(--ink-soft); }
+  p.about strong{ color: var(--ink); font-weight:600; }
+
+  .project{
+    display:grid;
+    grid-template-columns: 84px 1fr;
+    gap: 22px;
+    padding: 26px 0;
+    border-top: 1px solid var(--line);
+    transition: transform 0.15s ease;
+  }
+  .project:first-of-type{ border-top:none; }
+  .project:hover{ transform: translateX(3px); }
+  .icon{
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .icon svg{ width: 28px; height: 28px; }
+  .project h3{
+    font-family:'Fraunces', serif; font-weight: 500; font-size: 20px; margin: 0 0 6px;
+  }
+  .project .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 10px; }
+  .tag{
+    font-size: 12px; font-weight: 600;
+    color: var(--teal-deep);
+    background: color-mix(in srgb, var(--teal) 12%, transparent);
+    padding: 3px 9px; border-radius: 20px;
+  }
+  .project p{ margin: 0 0 10px; color: var(--ink-soft); font-size: 15px; max-width: 62ch; }
+  .status{ font-size: 13px; color: var(--ink-soft); }
+  .status.pending{ font-style: italic; }
+
+  .lead-item{
+    display:grid;
+    grid-template-columns: 190px 1fr;
+    gap: 18px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+  }
+  .lead-item:first-of-type{ border-top:none; }
+  .lead-item .role{ font-weight:600; font-size: 14px; color: var(--ink-soft); }
+  .lead-item h4{ margin: 0 0 6px; font-size: 16px; font-weight:600; }
+  .lead-item p{ margin:0; color: var(--ink-soft); font-size: 14.5px; max-width: 58ch; }
+  @media (max-width: 620px){
+    .lead-item{ grid-template-columns: 1fr; gap:4px; }
+  }
+
+  .skill-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 22px;
+  }
+  .skill-cat h4{
+    font-size: 13px; color: var(--teal-deep);
+    margin: 0 0 10px; font-weight: 700;
+  }
+  .skill-cat ul{ list-style:none; padding:0; margin:0; }
+  .skill-cat li{ font-size: 14.5px; padding: 4px 0; color: var(--ink-soft); }
+
+  footer{
+    padding: 40px 0 60px;
+    border-top: 1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
+  }
+  footer .f-note{ font-size: 13px; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap topbar">
+    <div class="mark">Philips Gunawan</div>
+    <nav class="links">
+      <a href="#projects">Projects</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <div>
+      <h1>Computer science student who ships small, useful tools.</h1>
+      <p class="lede">5th-semester CS student at BINUS University. I build web apps around real problems — child nutrition screening, small-business bookkeeping — and I'm exploring where I fit best across software engineering, data, and UI/UX.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:philipsgunawan5@gmail.com">Get in touch</a>
+        <a class="btn ghost" href="#projects">See my projects</a>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>3.51</b><span>GPA, upward trend across 4 semesters</span></div>
+      <div class="stat"><b>3</b><span>shipped projects, more in progress</span></div>
+      <div class="stat"><b>Open</b><span>to software / data / UI-UX internships</span></div>
+    </div>
+  </section>
+
+  <section id="about" style="border-top:none;">
+    <div class="section-head"><h2>About</h2></div>
+    <p class="about">I'm based in Jakarta, currently in my 5th semester of <strong>Computer Science at BINUS University</strong>. Most of what I've built so far started as coursework, but I try to take it further than the assignment — the nutrition app below, for instance, went beyond "calculate a BMI" into actually giving parents a usable recommendation. Before university I ran the books for my high school's student council as treasurer, which is probably why "does this actually help someone" matters more to me than "does this look impressive on paper."</p>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <span class="note">Course &amp; personal projects</span>
+    </div>
+
+    <div class="project">
+      <div class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1D4B4A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a4.9 4.9 0 0 0-8.3-2.5l-.5.5-.5-.5a4.9 4.9 0 0 0-8.3 2.5c-.4 2 .5 4 2.2 5.7l6.6 6.6 6.6-6.6c1.7-1.7 2.6-3.7 2.2-5.7Z"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>
+      </div>
+      <div>
+        <div class="tags"><span class="tag">Applied AI</span><span class="tag">Health</span></div>
+        <h3>Child Growth &amp; Nutrition Advisor</h3>
+        <p>A web app for parents of children aged 1–5: enter height and weight, get a BMI-based screening for stunting or overweight risk, plus a personalized nutrition plan to help correct it. Built with Python and Streamlit as a team project for my AI course.</p>
+        <span class="status pending">Repo going public soon — check back or ask me directly.</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1D4B4A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M3 9h18M8 4v16"/><path d="M11.5 13.5h5M11.5 16.5h3.5"/></svg>
+      </div>
+      <div>
+        <div class="tags"><span class="tag">Software Engineering</span><span class="tag">Finance</span></div>
+        <h3>UMKM Financial Record Manager</h3>
+        <p>A bookkeeping web app built for small/micro businesses (UMKM), so they can log income and expenses and generate a clean financial report — the kind that helps them qualify for funding or growth programs. Team project for Software Engineering, built with Python and Streamlit.</p>
+        <span class="status pending">Repo going public soon — check back or ask me directly.</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1D4B4A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16.5 21 7l-3.3 12.5-5.1-3.7-2.6 2.5-.4-3.6L2 16.5Z"/></svg>
+      </div>
+      <div>
+        <div class="tags"><span class="tag">UI/UX Design</span><span class="tag">Figma</span></div>
+        <h3>Private Jet Charter — Booking Flow</h3>
+        <p>A UI/UX concept for a private jet marketplace: search, listing, and checkout screens designed end-to-end in Figma. I also explored a second concept for a ticketing platform, focused on layout and user-flow experimentation.</p>
+        <span class="status pending">Figma file link coming soon.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="leadership">
+    <div class="section-head"><h2>Leadership &amp; organizations</h2></div>
+
+    <div class="lead-item">
+      <div class="role">High School</div>
+      <div>
+        <h4>Vice President &amp; Treasurer, Student Council (OSIS)</h4>
+        <p>Co-led planning for school-wide events and managed the council's cash flow, keeping records transparent and accurate.</p>
+      </div>
+    </div>
+    <div class="lead-item">
+      <div class="role">High School</div>
+      <div>
+        <h4>Volunteer, Orphanage Donation Drive</h4>
+        <p>Organized a student donation drive and coordinated delivery to a local orphanage; spent time running activities with the children there.</p>
+      </div>
+    </div>
+    <div class="lead-item">
+      <div class="role">BINUS University</div>
+      <div>
+        <h4>Freshmen Leader &amp; Freshmen Partner</h4>
+        <p>Mentored incoming first-year students through orientation and their early academic adjustment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head"><h2>Skills</h2></div>
+    <div class="skill-grid">
+      <div class="skill-cat">
+        <h4>Programming</h4>
+        <ul><li>Python</li><li>Git basics</li></ul>
+      </div>
+      <div class="skill-cat">
+        <h4>Tools</h4>
+        <ul><li>Streamlit</li><li>Figma</li><li>VS Code</li></ul>
+      </div>
+      <div class="skill-cat">
+        <h4>Practice</h4>
+        <ul><li>UI/UX fundamentals</li><li>Financial reporting logic</li><li>AI-assisted development</li></ul>
+      </div>
+      <div class="skill-cat">
+        <h4>Working style</h4>
+        <ul><li>Leadership</li><li>Teamwork</li><li>Fast learner</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="f-note">Jakarta Barat, Indonesia · philipsgunawan5@gmail.com · 0878-7795-2090</div>
+    <div class="cta">
+      <a class="btn ghost" href="mailto:philipsgunawan5@gmail.com">Email me</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
